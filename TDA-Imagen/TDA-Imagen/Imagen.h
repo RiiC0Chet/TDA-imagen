@@ -22,16 +22,6 @@
 
 typedef unsigned char byte; // tipo base de cada pixel
 
-/****************************************************************************/
-// Fichero: imagen.h
-// Fichero de cabecera asociado a la biblioteca libimg.a.
-// Implementacion del TDA imagen (imagen digital en niveles de gris).
-/****************************************************************************/
-
-#ifndef IMAGEN
-#define IMAGEN
-typedef unsigned char byte; // tipo base de cada pixel
-
 class Imagen {
 
 private:
@@ -109,7 +99,7 @@ public:
 
     /****************************************************************************/
 
-    void Imagen::enmarca_imagen();
+    void enmarca_imagen();
 
     /****************************************************************************/
 
@@ -130,3 +120,4 @@ public:
 
 #endif /* IMAGEN_H */
 
+};

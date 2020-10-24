@@ -29,23 +29,23 @@ Imagen::Imagen(int filas_aux, int cols_aux) {
     for (int f = 0; f < filas; f++) {
 
         img[f] = new byte[cols];
-        for (int c = 0; c < cols(); c++) {
+        for (int c = 0; c < cols; c++) {
             img[f][c] = 255;
         }
     }
 
 
     // Crear el marco que delimita la imagen
-    for (int f = 0; f < filas(); f++) // lado izquierdo
+    for (int f = 0; f < filas; f++) // lado izquierdo
         img[f][0] = 0;
 
-    for (int f = 0; f < filas(); f++) // lado derecho
+    for (int f = 0; f < filas; f++) // lado derecho
         img[f][cols - 1] = 0;
 
-    for (int c = 0; c < cols(); c++) // lado superior
+    for (int c = 0; c < cols; c++) // lado superior
         img[0][c] = 0;
 
-    for (int c = 0; c < cols(); c++) // lado inferior
+    for (int c = 0; c < cols; c++) // lado inferior
         img[filas - 1][c] = 0;
 
 
@@ -58,7 +58,7 @@ Imagen::~Imagen() {
     for (int f = 0; f < filas; f++)
         delete img[f];
 
-    delete img[];
+    delete [] img;
 
 };
 
@@ -87,16 +87,16 @@ byte Imagen::valor_pixel(int fila, int col) const {
 
 void Imagen::enmarca_imagen()
 {
-    for (int f = 0; f < filas(); f++) // lado izquierdo
+    for (int f = 0; f < filas; f++) // lado izquierdo
         img[f][0] = 0;
 
-    for (int f = 0; f < filas(); f++) // lado derecho
+    for (int f = 0; f < filas; f++) // lado derecho
         img[f][cols - 1] = 0;
 
-    for (int c = 0; c < cols(); c++) // lado superior
+    for (int c = 0; c < cols; c++) // lado superior
         img[0][c] = 0;
 
-    for (int c = 0; c < cols(); c++) // lado inferior
+    for (int c = 0; c < cols; c++) // lado inferior
         img[filas - 1][c] = 0;
 
 }
@@ -107,4 +107,3 @@ void Imagen::asigna_pixel(int fila, int col, byte valor) {
 
     img[fila][col] = valor;
 }
-
