@@ -292,3 +292,90 @@ void ZoomImagen(const char* fichero1, const char* fichero2, int x1, int y1, int 
 
      fch2.EscribirImagenPGM(fichero2, fch2.GetVector(), fch2.num_filas(), fch2.num_columnas());
 }
+
+byte Imagen::MaxMinImagen(bool opcion) {
+    
+    byte valor = 0;
+    
+    if (opcion) {
+
+        for (int f = 0; f < num_filas(); f++)
+        {
+            for (int c = 0; c < num_columnas(); c++)
+            {
+                if (valor < valor_pixel(f, c)) {
+                    valor = valor_pixel(f, c);
+                }
+            }
+        }
+    }
+
+    else {
+
+        valor = 1000;
+
+        for (int f = 0; f < num_filas(); f++)
+        {
+            for (int c = 0; c < num_columnas(); c++)
+            {
+                if (valor > valor_pixel(f, c)) {
+                    valor = valor_pixel(f, c);
+                }
+            }
+        }
+    }
+
+    return valor;
+}
+
+void AumentoContraste(const char* fichero1, const char* fichero2, int min, int max)
+{
+    
+    Imagen fch1(0, 0);
+    fch1.LeerImagenPGM(fichero1, fch1.Getfilas(), fch1.Getcolumnas());
+    Imagen fch2(fch1.num_filas() ,fch1.num_columnas());
+    
+    unsigned char valor;
+
+    const byte max_img = fch1.MaxMinImagen(true);
+    const byte min_img = fch1.MaxMinImagen(false);
+    const double valor_fijo = (max - min) / (max_img-min_img);
+    double valor_total = 0, decimales;
+    int aux;
+
+
+    for (int f = 0; f < fch2.num_filas(); f++)
+    {
+        for (int c = 0; c < fch2.num_columnas(); c++)
+        {
+            valor_total = min + (valor_fijo * (fch1.valor_pixel(f, c) - min_img));
+
+            aux = valor_total;
+            decimales = valor_total - aux;
+            
+            
+            if (decimales >= 0.5)
+            {
+                valor = valor_total+1;
+                fch2.asigna_pixel(f, c, valor);
+            
+            }
+            else
+            {
+                valor = valor_total;
+                fch2.asigna_pixel(f, c, valor);
+            
+            }
+        }
+    }
+
+    fch2.EscribirImagenPGM(fichero2, fch2.GetVector(), fch2.num_filas(), fch2.num_columnas());
+
+
+}
+
+
+
+
+
+

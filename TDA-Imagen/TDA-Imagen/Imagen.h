@@ -130,6 +130,15 @@ public:
 
     const unsigned char* GetVector();
 
+    /**
+       @brief Calcula el maximo/imagen valor de imagen.
+       @param bool opcion, depende de su estado coge el maximo o el minimo.    
+       @return  el valor maximo/minimo.
+    */
+
+    byte MaxMinImagen(bool opcion);
+
+
     /****************************************************************************/
 
     /**
@@ -196,11 +205,22 @@ public:
      @param  fichero2:  nombre del fichero que contedrá el resultado de la transformación
      @param  x1/y1:   coordenadas esquina superior izquierda.
      @param x2/y2:   coordenadas esquina inferior derecha.
-     @return devuelve el fichero con la subimagen
+     @return devuelve el fichero con la subimagen (fichero 2)
     */
 
     void ZoomImagen(const char* fichero1, const char* fichero2, int x1, int y1, int x2, int y2);
 
+     /**
+     @brief  Consiste en cambiar los niveles maximos y minimos de grises de una imagen a 
+             traves de una formula dada
+     @param  nombre del fichero de imagen origen
+     @param  nombre del fichero de imagen final con el filtro ya aplicado
+     @param  minimo del intervalo
+     @param  maximo del intervalo
+     @return devuelve el fichero con la subimagen (fichero 2)
+
+    */
+    void AumentoContraste(const char* fichero1, const char* fichero2,int min, int max);
 
 };
 
